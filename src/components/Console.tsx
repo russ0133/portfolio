@@ -68,6 +68,7 @@ const Console: React.FC<IConsole> = memo(({ setAnimationComplete, setHovering, t
 
   const handleHovering = (value: boolean) => {
     if (!power) return;
+    setHovering(value);
   };
 
   return (

@@ -1,18 +1,25 @@
 #navbar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 1em;
   margin-left: 2em;
   position: absolute;
+  overflow: hidden;
   z-index: 1;
 
   .title {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    overflow: visible;
     margin-bottom: 6px;
   }
 
   .paragraph {
     margin-left: 1em;
+    width: max-content;
+    white-space: nowrap;
   }
 }
 .switch {
