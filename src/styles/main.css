@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.switch[data-isOn="true"] {
+.switch[data-on="true"] {
   justify-content: flex-end;
 }
 
@@ -50,6 +50,14 @@
   justify-content: center;
   align-items: center;
   width: 41px;
+}
+
+.loader {
+  display: flex;
+  color: white;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {

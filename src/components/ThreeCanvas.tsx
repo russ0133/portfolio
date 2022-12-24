@@ -10,12 +10,9 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Console from "./Console";
-import { motion } from "framer-motion-3d";
-import { AmbientLight } from "three";
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from "@react-three/postprocessing";
 import { useZuStore } from "../zustand/zuStore";
+import Loading from "./Loading";
 
 function ThreeCanvas() {
   const power = useZuStore((store) => store.state.power);
@@ -24,16 +21,8 @@ function ThreeCanvas() {
     y: power ? 0 : 0,
     z: power ? 0 : 0,
   };
-  const [animationComplete, setAnimationComplete] = React.useState(false);
   const [text, setText] = React.useState("About me");
   const [hovering, setHovering] = React.useState(false);
-
-  const [scene, setScene] = React.useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setScene(true);
-    }, 0);
-  });
 
   useEffect(() => {
     document.body.style.cursor = hovering ? "pointer" : "default";
@@ -41,6 +30,7 @@ function ThreeCanvas() {
 
   return (
     <div id="three-canvas">
+      <Loading />
       <Canvas shadows orthographic camera={{ position: [0, 0, 100], zoom: 300 }}>
         <Stage adjustCamera={1.12} intensity={0.5} shadows="contact" environment="sunset">
           <ambientLight />
@@ -55,16 +45,8 @@ function ThreeCanvas() {
             azimuth={[-0.5, 0.5]} // Horizontal limits
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
           >
-            {scene && (
-              <Console
-                setAnimationComplete={setAnimationComplete}
-                setHovering={setHovering}
-                text={text}
-                setText={setText}
-              />
-            )}
+            <Console setHovering={setHovering} text={text} setText={setText} />
           </PresentationControls>
-          {/* <OrbitControls /> */}
         </Stage>
       </Canvas>
     </div>
