@@ -3,7 +3,7 @@ import TogglePower from "./onOff";
 import { motion } from "framer-motion";
 
 function Navbar() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const paragraphs = [
     { text: "This is my portifolio.", classes: "text-white" },

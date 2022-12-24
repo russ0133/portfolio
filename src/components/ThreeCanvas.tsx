@@ -35,8 +35,12 @@ function ThreeCanvas() {
     }, 0);
   });
 
+  useEffect(() => {
+    document.body.style.cursor = hovering ? "pointer" : "default";
+  }, [hovering]);
+
   return (
-    <div id="three-canvas" className={`${hovering ? "cursor-pointer" : ""}`}>
+    <div id="three-canvas">
       <Canvas shadows orthographic camera={{ position: [0, 0, 100], zoom: 300 }}>
         <Stage adjustCamera={1.12} intensity={0.5} shadows="contact" environment="sunset">
           <ambientLight />
