@@ -2,17 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2em;
   margin-top: 1em;
   margin-left: 2em;
   position: absolute;
   z-index: 1;
+
+  .title {
+    margin-bottom: 6px;
+  }
+
+  .paragraph {
+    margin-left: 1em;
+  }
 }
 .switch {
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
-  width: 9em;
+  padding: 6px;
+  width: 5em;
   cursor: pointer;
 }
 
@@ -21,10 +28,14 @@
 }
 
 .handle {
-  width: 3em;
-  height: 3em;
+  width: 2em;
+  height: 2em;
   background-color: #ffffff;
   border-radius: 40px;
+
+  svg {
+    size: 1500px;
+  }
 }
 
 .wrapper {

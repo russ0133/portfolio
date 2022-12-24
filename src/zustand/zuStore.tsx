@@ -12,7 +12,7 @@ interface IZuStore {
   actions: Actions;
 }
 
-export const zuStore = create(
+export const useZuStore = create(
   immer<IZuStore>((set) => ({
     state: { power: false },
     actions: {

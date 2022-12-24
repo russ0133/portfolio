@@ -8,7 +8,7 @@ import { Html, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion-3d";
-import { zuStore } from "../zustand/zuStore";
+import { useZuStore } from "../zustand/zuStore";
 type GLTFResult = GLTF & {
   nodes: {
     Cube004: THREE.Mesh;
@@ -37,13 +37,7 @@ let classRef = "wrapper ";
 
 const Console: React.FC<IConsole> = memo(({ setAnimationComplete, setHovering, text, setText }) => {
   const group = useRef<any>();
-  const power = zuStore((store) => store.state.power);
-
-  const [hovering, setHoveringOnGroup] = React.useState(false);
-  const rotationX = useRef();
-  const rotationY = useRef();
-  const [rotating, setRotating] = React.useState(true);
-  const [side, setSide] = React.useState(0);
+  const power = useZuStore((store) => store.state.power);
 
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
   useFrame((state) => {
@@ -51,17 +45,17 @@ const Console: React.FC<IConsole> = memo(({ setAnimationComplete, setHovering, t
     if (!power) {
       group.current.rotation.x = THREE.MathUtils.lerp(
         group.current.rotation.x,
-        Math.cos(t / 2) / 20 + 0.03,
+        Math.cos(t / 2) / 20,
         0.1
       );
       group.current.rotation.y = THREE.MathUtils.lerp(
         group.current.rotation.y,
-        (Math.sin(t / 4) / 20) * 0.3,
+        Math.sin(t / 4) / 20,
         0.1
       );
       group.current.rotation.z = THREE.MathUtils.lerp(
         group.current.rotation.z,
-        (Math.sin(t / 8) / 20) * 0.3,
+        Math.sin(t / 8) / 20,
         0.1
       );
       group.current.position.y = THREE.MathUtils.lerp(
@@ -72,13 +66,8 @@ const Console: React.FC<IConsole> = memo(({ setAnimationComplete, setHovering, t
     }
   });
 
-  const handleClick = () => {
-    setRotating(false);
-    group.current.rotation.y = 0;
-  };
-
-  const handleText = (text: string) => {
-    setText(text);
+  const handleHovering = (value: boolean) => {
+    if (!power) return;
   };
 
   return (
@@ -108,8 +97,8 @@ const Console: React.FC<IConsole> = memo(({ setAnimationComplete, setHovering, t
       <mesh
         geometry={nodes.ControlsLeft.geometry}
         material={materials.Border}
-        onPointerEnter={() => setHovering(true)}
-        onPointerLeave={() => setHovering(false)}
+        onPointerEnter={() => handleHovering(true)}
+        onPointerLeave={() => handleHovering(false)}
         onClick={() => {
           text === "About me" ? setText("Projects") : setText("About me");
         }}
