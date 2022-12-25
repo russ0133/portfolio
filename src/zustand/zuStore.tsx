@@ -2,14 +2,16 @@ import create from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 interface State {
-  power: boolean;
-  uiOpen: boolean;
-  modelLoaded: boolean;
+  isFirstRun: boolean;
+  isPowerOn: boolean;
+  isUIOpen: boolean;
+  isModelLoaded: boolean;
 }
 interface Actions {
   togglePower: () => void;
   toggleUI: (value: boolean) => void;
   setModelLoaded: () => void;
+  setIsFirstRun: (value: boolean) => void;
 }
 interface IZuStore {
   state: State;
@@ -18,21 +20,26 @@ interface IZuStore {
 
 export const useZuStore = create(
   immer<IZuStore>((set) => ({
-    state: { power: false, modelLoaded: false, uiOpen: false },
+    state: { isPowerOn: false, isModelLoaded: false, isUIOpen: false, isFirstRun: true },
     actions: {
       toggleUI: (value) => {
         set((store) => {
-          store.state.uiOpen = value;
+          store.state.isUIOpen = value;
         });
       },
       togglePower: () => {
         set((store) => {
-          store.state.power = !store.state.power;
+          store.state.isPowerOn = !store.state.isPowerOn;
         });
       },
       setModelLoaded: () => {
         set((store) => {
-          store.state.modelLoaded = true;
+          store.state.isModelLoaded = true;
+        });
+      },
+      setIsFirstRun: (value) => {
+        set((store) => {
+          store.state.isFirstRun = value;
         });
       },
     },

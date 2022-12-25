@@ -3,7 +3,7 @@ import { useZuStore } from "../zustand/zuStore";
 import Spinner from "./svg/Spinner";
 
 function Loading() {
-  const modelLoaded = useZuStore((store) => store.state.modelLoaded);
+  const modelLoaded = useZuStore((store) => store.state.isModelLoaded);
 
   const [loaded, setLoaded] = React.useState(false);
 

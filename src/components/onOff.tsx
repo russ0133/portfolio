@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useZuStore } from "../zustand/zuStore";
 
 function TogglePower() {
-  const power = useZuStore((store) => store.state.power);
-  const togglePower = useZuStore((store) => store.actions.togglePower);
+  const power = useZuStore((store) => store.state.isPowerOn);
+  const { togglePower, setIsFirstRun } = useZuStore((store) => store.actions);
 
   const svgColor = power ? "green" : "grey";
   return (
@@ -23,7 +23,10 @@ function TogglePower() {
       }}
       className="switch bg-gray-400 rounded-full shadow-md shadow-white/"
       data-on={power}
-      onClick={() => togglePower()}
+      onClick={() => {
+        togglePower();
+        if (power === false) setIsFirstRun(true);
+      }}
     >
       <motion.div className="handle" layout transition={spring}>
         <svg

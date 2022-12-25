@@ -18,11 +18,13 @@ type GLTFResult = GLTF & {
     ControlsLeft: THREE.Mesh;
     ButtonRight: THREE.Mesh;
     ControlsBottom: THREE.Mesh;
+    LED_Button: THREE.Mesh;
   };
   materials: {
     Border: THREE.MeshStandardMaterial;
     Screen: THREE.MeshStandardMaterial;
     Superstructure: THREE.MeshStandardMaterial;
+    LED: THREE.MeshStandardMaterial;
   };
 };
 
@@ -33,18 +35,29 @@ interface IConsole {
 }
 
 const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
+  const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
+
+  const { isModelLoaded, isFirstRun } = useZuStore((store) => store.state);
+  const { setModelLoaded, setIsFirstRun } = useZuStore((store) => store.actions);
+
+  const [ledColor, setLedColor] = React.useState("#0391BA");
   const { active, progress, errors, item, loaded, total } = useProgress();
   const group = useRef<any>();
-  const power = useZuStore((store) => store.state.power);
-  const setModelLoaded = useZuStore((store) => store.actions.setModelLoaded);
+  const power = useZuStore((store) => store.state.isPowerOn);
 
   useEffect(() => {
     setModelLoaded();
   }, [active, progress, errors, item]);
+
+  useEffect(() => {
+    if (isModelLoaded) {
+      materials.LED.color = new THREE.Color(ledColor);
+    }
+  }, [ledColor]);
+
   const [page, setPage] = React.useState(true);
   const setOpen = useZuStore((store) => store.actions.toggleUI);
 
-  const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (!power) {
@@ -111,9 +124,31 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
             }}
           />
           <mesh geometry={nodes.ButtonRight.geometry} material={materials.Border} />
+          <mesh
+            geometry={nodes.LED_Button.geometry}
+            material={power ? materials.LED : materials.Border}
+            /*             onClick={() => {
+              function getRandomHexColor() {
+                // Generate 3 random numbers between 0 and 255
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+
+                // Convert each number to a 2-digit hexadecimal string
+                const hexR = r.toString(16).padStart(2, "0");
+                const hexG = g.toString(16).padStart(2, "0");
+                const hexB = b.toString(16).padStart(2, "0");
+
+                // Concatenate the hexadecimal strings and prepend a '#' symbol
+                return `#${hexR}${hexG}${hexB}`;
+              }
+
+              setLedColor(getRandomHexColor());
+            }} */
+          />
           <mesh geometry={nodes.ControlsBottom.geometry} material={materials.Border} />{" "}
           <motion.mesh
-            initial="off"
+            initial={!isFirstRun ? "on" : "off"}
             animate={power ? "on" : "off"}
             variants={{
               off: { scaleX: 0 },
@@ -133,7 +168,7 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
                 occlude
               >
                 <motion.div
-                  initial="off"
+                  initial={!isFirstRun ? "on" : "off"}
                   animate={power ? "on" : "off"}
                   variants={{
                     off: { scaleX: 0, opacity: 0 },
@@ -148,6 +183,7 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
                   onPointerDown={(e) => {
                     setPage(false);
                     setOpen(false);
+                    setIsFirstRun(false);
                     e.stopPropagation();
                   }}
                 >

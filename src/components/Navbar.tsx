@@ -8,9 +8,9 @@ import { useZuStore } from "../zustand/zuStore";
 function Navbar() {
   const [loaded, setLoaded] = React.useState(false);
 
-  const open = useZuStore((store) => store.state.uiOpen);
+  const open = useZuStore((store) => store.state.isUIOpen);
   const setOpen = useZuStore((store) => store.actions.toggleUI);
-  const modelLoaded = useZuStore((store) => store.state.modelLoaded);
+  const modelLoaded = useZuStore((store) => store.state.isModelLoaded);
 
   useEffect(() => {
     if (modelLoaded)

@@ -15,7 +15,7 @@ import { useZuStore } from "../zustand/zuStore";
 import Loading from "./Loading";
 
 function ThreeCanvas() {
-  const power = useZuStore((store) => store.state.power);
+  const power = useZuStore((store) => store.state.isPowerOn);
   const rotation = {
     x: power ? 0 : 0,
     y: power ? 0 : 0,
@@ -52,6 +52,12 @@ function ThreeCanvas() {
             azimuth={[-0.5, 0.5]} // Horizontal limits
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
           >
+            {" "}
+            {/* 
+            <mesh>
+              <boxBufferGeometry args={[1, 1, 1]} />
+              <meshStandardMaterial color="#0391BA" />
+            </mesh> */}
             <Console setHovering={setHovering} text={text} setText={setText} />
           </PresentationControls>
         </Stage>
