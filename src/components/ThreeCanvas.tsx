@@ -9,7 +9,7 @@ import {
   Stage,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Console from "./Console";
 import { useZuStore } from "../zustand/zuStore";
 import Loading from "./Loading";
@@ -24,15 +24,22 @@ function ThreeCanvas() {
   const [text, setText] = React.useState("About me");
   const [hovering, setHovering] = React.useState(false);
 
+  const refff = useRef<any>();
+
+  const [adjust, setAdjust] = useState<any>(1.12);
   useEffect(() => {
     document.body.style.cursor = hovering ? "pointer" : "default";
   }, [hovering]);
 
+  useEffect(() => {
+    setTimeout(() => setAdjust(false), 500);
+  }, []);
+
   return (
-    <div id="three-canvas">
+    <div id="three-canvas" onClick={() => setAdjust(false)}>
       <Loading />
       <Canvas shadows orthographic camera={{ position: [0, 0, 100], zoom: 300 }}>
-        <Stage adjustCamera={1.12} intensity={0.5} shadows="contact" environment="sunset">
+        <Stage adjustCamera={adjust} intensity={0.5} shadows="contact" environment="sunset">
           <ambientLight />
           <PresentationControls
             enabled={true} // the controls can be disabled by setting this to false

@@ -41,6 +41,8 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
   useEffect(() => {
     setModelLoaded();
   }, [active, progress, errors, item]);
+  const [page, setPage] = React.useState(true);
+  const setOpen = useZuStore((store) => store.actions.toggleUI);
 
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
   useFrame((state) => {
@@ -75,80 +77,132 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
   };
 
   return (
-    <motion.group
-      initial="on"
-      transition={spring}
-      animate={power ? "on" : ""}
-      variants={{
-        on: {
-          x: 0,
-          y: -0.1,
-          z: 0,
-          rotateX: 0,
-          rotateY: 0,
-          rotateZ: 0,
-        },
-      }}
-      ref={group as any}
-      dispose={null}
-      position={[0, -0.1, 0]}
-      scale={[1.2, 1.2, 1.2]}
-    >
-      <mesh geometry={nodes.Cube004.geometry} material={materials.Border} />
-      <mesh geometry={nodes.Cube005.geometry} material={materials.Superstructure} />
-      <mesh geometry={nodes.Cube005_1.geometry} material={materials.Border} />
-      <mesh
-        geometry={nodes.ControlsLeft.geometry}
-        material={materials.Border}
-        onPointerEnter={() => handleHovering(true)}
-        onPointerLeave={() => handleHovering(false)}
-        onClick={() => {
-          text === "About me" ? setText("Projects") : setText("About me");
-        }}
-      />
-      <mesh geometry={nodes.ButtonRight.geometry} material={materials.Border} />
-      <mesh geometry={nodes.ControlsBottom.geometry} material={materials.Border} />{" "}
-      <motion.mesh
-        initial="off"
-        animate={power ? "on" : "off"}
-        variants={{
-          off: { scaleX: 0 },
-          on: { scaleX: 1 },
-        }}
-        geometry={nodes.Cube004_1.geometry}
-        material={power ? materials.Screen : materials.Border}
-        position={[0, 0, 0]}
-        scale={[1, 1, 1]}
-      >
-        {power ? (
-          <Html
-            className="content"
-            position={[-0.004, 1.18, 0.16]}
-            scale={[0.5, 0.5, 1]}
-            transform
-            occlude
+    <>
+      {page ? (
+        <motion.group
+          initial="on"
+          transition={spring}
+          animate={power ? "on" : ""}
+          variants={{
+            on: {
+              x: 0,
+              y: -0.1,
+              z: 0,
+              rotateX: 0,
+              rotateY: 0,
+              rotateZ: 0,
+            },
+          }}
+          ref={group as any}
+          dispose={null}
+          position={[0, -0.1, 0]}
+          scale={[1.2, 1.2, 1.2]}
+        >
+          <mesh geometry={nodes.Cube004.geometry} material={materials.Border} />
+          <mesh geometry={nodes.Cube005.geometry} material={materials.Superstructure} />
+          <mesh geometry={nodes.Cube005_1.geometry} material={materials.Border} />
+          <mesh
+            geometry={nodes.ControlsLeft.geometry}
+            material={materials.Border}
+            onPointerEnter={() => handleHovering(true)}
+            onPointerLeave={() => handleHovering(false)}
+            onClick={() => {
+              text === "About me" ? setText("Projects") : setText("About me");
+            }}
+          />
+          <mesh geometry={nodes.ButtonRight.geometry} material={materials.Border} />
+          <mesh geometry={nodes.ControlsBottom.geometry} material={materials.Border} />{" "}
+          <motion.mesh
+            initial="off"
+            animate={power ? "on" : "off"}
+            variants={{
+              off: { scaleX: 0 },
+              on: { scaleX: 1 },
+            }}
+            geometry={nodes.Cube004_1.geometry}
+            material={power ? materials.Screen : materials.Border}
+            position={[0, 0, 0]}
+            scale={[1, 1, 1]}
           >
-            <motion.div
-              initial="off"
-              animate={power ? "on" : "off"}
-              variants={{
-                off: { scaleX: 0, opacity: 0 },
-                on: {
-                  scaleX: 1,
-                  opacity: 1,
-                  fontSize: 2,
-                },
-              }}
-              transition={{ delay: 0.4 }}
-              className={"wrapper"}
-              onPointerDown={(e) => e.stopPropagation()}
+            {power ? (
+              <Html
+                className="content"
+                position={[-0.004, 1.18, 0.16]}
+                scale={[0.5, 0.5, 1]}
+                transform
+                occlude
+              >
+                <motion.div
+                  initial="off"
+                  animate={power ? "on" : "off"}
+                  variants={{
+                    off: { scaleX: 0, opacity: 0 },
+                    on: {
+                      scaleX: 1,
+                      opacity: 1,
+                      fontSize: 2,
+                    },
+                  }}
+                  transition={{ delay: 0.4 }}
+                  className={"wrapper"}
+                  onPointerDown={(e) => {
+                    setPage(false);
+                    setOpen(false);
+                    e.stopPropagation();
+                  }}
+                >
+                  <p>{text}</p>
+                </motion.div>
+              </Html>
+            ) : null}
+          </motion.mesh>
+        </motion.group>
+      ) : (
+        <motion.mesh
+          initial="off"
+          animate={power ? "on" : "off"}
+          variants={{
+            off: { scaleX: 0, scaleY: 0 },
+            on: { scaleX: 5, scaleY: 5 },
+          }}
+          geometry={nodes.Cube004_1.geometry}
+          material={power ? materials.Screen : materials.Border}
+          position={[0.05, -4.96, 0]}
+          scale={[2, 1.2, 1.8]}
+        >
+          {power ? (
+            <Html
+              className="content"
+              position={[-0.004, 1.18, 0.16]}
+              scale={[0.5, 0.5, 1]}
+              transform
+              occlude
             >
-              {text}
-            </motion.div>
-          </Html>
-        ) : null}
-      </motion.mesh>
-    </motion.group>
+              <motion.div
+                initial="off"
+                animate={power ? "on" : "off"}
+                variants={{
+                  off: { scaleX: 0, opacity: 0 },
+                  on: {
+                    scaleX: 1,
+                    opacity: 1,
+                    fontSize: 2,
+                  },
+                }}
+                transition={{ delay: 0.4 }}
+                className={"wrapper"}
+                onPointerDown={(e) => {
+                  e.stopPropagation();
+                  setPage(true);
+                }}
+              >
+                <p>content</p>
+              </motion.div>
+            </Html>
+          ) : null}
+        </motion.mesh>
+      )}
+    </>
   );
 });
 

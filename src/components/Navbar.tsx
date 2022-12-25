@@ -6,8 +6,10 @@ import Spinner from "./svg/Spinner";
 import { useZuStore } from "../zustand/zuStore";
 
 function Navbar() {
-  const [open, setOpen] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
+
+  const open = useZuStore((store) => store.state.uiOpen);
+  const setOpen = useZuStore((store) => store.actions.toggleUI);
   const modelLoaded = useZuStore((store) => store.state.modelLoaded);
 
   useEffect(() => {

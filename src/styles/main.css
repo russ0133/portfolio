@@ -6,7 +6,7 @@
   margin-left: 2em;
   position: absolute;
   overflow: hidden;
-  z-index: 1;
+  z-index: 15;
 
   .title {
     position: relative;
@@ -47,6 +47,7 @@
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 41px;
