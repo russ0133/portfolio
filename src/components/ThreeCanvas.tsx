@@ -16,6 +16,7 @@ function ThreeCanvas() {
   const [hovering, setHovering] = React.useState(false);
 
   const refff = useRef<any>();
+  const { setIsViewingContent } = useZuStore((store) => store.actions);
 
   const [adjust, setAdjust] = useState<any>(1.12);
   useEffect(() => {
@@ -29,7 +30,12 @@ function ThreeCanvas() {
   return (
     <div id="three-canvas" onClick={() => setAdjust(false)}>
       <Loading />
-      <Canvas shadows orthographic camera={{ position: [0, 0, 100], zoom: 300 }}>
+      <Canvas
+        shadows
+        orthographic
+        camera={{ position: [0, 0, 100], zoom: 300 }}
+        onPointerMissed={() => setIsViewingContent(false)}
+      >
         <Stage adjustCamera={adjust} intensity={0.5} shadows="contact" environment="sunset">
           <ambientLight />
           <PresentationControls

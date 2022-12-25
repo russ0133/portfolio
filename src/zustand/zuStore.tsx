@@ -47,6 +47,7 @@ export const useZuStore = create(
         set((store) => {
           store.state.console.isPowerOn = !store.state.console.isPowerOn;
         });
+        console.log("Power toggled");
       },
       setModelLoaded: () => {
         set((store) => {

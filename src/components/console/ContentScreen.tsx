@@ -3,6 +3,8 @@ import { motion } from "framer-motion-3d";
 import { useZuStore } from "../../zustand/zuStore";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
+import Example from "../interface/AboutMe";
+import About from "../About";
 
 interface IScreen {
   nodes: GLTFResult["nodes"];
@@ -10,49 +12,39 @@ interface IScreen {
 }
 
 const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
-  const { isPowerOn } = useZuStore((store) => store.state.console);
+  const { isViewingContent } = useZuStore((store) => store.state.console);
   const { setIsViewingContent } = useZuStore((store) => store.actions);
 
   return (
     <motion.mesh
-      initial="off"
-      animate={isPowerOn ? "on" : "off"}
-      variants={{
-        off: { scaleX: 0, scaleY: 0 },
-        on: { scaleX: 5, scaleY: 5 },
-      }}
+      /*       initial="on"
+      animate={isViewingContent ? "on" : "off"}
+      variants={{ off: { scale: [0, 1.1, 0] }, on: { scale: [1, 1.1, 1] } }} */
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
       geometry={nodes.Cube004_1.geometry}
-      material={isPowerOn ? materials.Screen : materials.Border}
-      position={[0.05, -4.96, 0]}
-      scale={[2, 1.2, 1.8]}
+      material={materials.Border}
+      position={[0.05, -0.22, 0]}
     >
-      {isPowerOn ? (
-        <Html
-          className="content"
-          position={[-0.004, 1.18, 0.16]}
-          scale={[0.5, 0.5, 1]}
-          transform
-          occlude
-        >
+      {isViewingContent ? (
+        <Html position={[-0.004, 1.18, 0.16]} scale={[1, 1, 1]} transform occlude>
           <motion.div
             initial="off"
-            animate={isPowerOn ? "on" : "off"}
+            animate={isViewingContent ? "on" : "off"}
             variants={{
-              off: { scaleX: 0, opacity: 0 },
+              off: {},
               on: {
-                scaleX: 1,
                 opacity: 1,
                 fontSize: 2,
               },
             }}
-            transition={{ delay: 0.4 }}
-            className={"wrapper"}
+            className="wrapper-screen"
+            transition={{}}
             onPointerDown={(e) => {
               e.stopPropagation();
-              setIsViewingContent(false);
             }}
           >
-            <p>Content</p>
+            <About />
           </motion.div>
         </Html>
       ) : null}

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 1em;
-  margin-left: 2em;
+  margin-left: 1em;
   position: absolute;
   overflow: hidden;
   z-index: 15;
@@ -75,31 +75,6 @@
   width: 41px;
 }
 
-.content-screen {
-  width: 334px;
-  height: 216px;
-  background: #f0f0f0;
-  border-radius: 3px;
-  overflow-y: auto;
-  padding: 0;
-}
-
-.wrapper-screen {
-  padding: 10px;
-  width: 668px;
-  height: 432px;
-  transform: scale(0.5);
-  transform-origin: top left;
-}
-
-.loader {
-  display: flex;
-  color: white;
-  gap: 1em;
-  justify-content: center;
-  align-items: center;
-}
-
 .content {
   display: flex;
   width: 41px;
@@ -109,6 +84,40 @@
   line-height: 1em;
   height: 31px;
   overflow: hidden;
+}
+
+.content-screen {
+  display: flex;
+  width: 41px;
+  text-align: center;
+  font-size: 0.6em;
+  font-weight: 600;
+  line-height: 1em;
+  height: 50px;
+  overflow: visible;
+}
+
+@media (max-width: 1920px) {
+  .wrapper-screen {
+    padding: 10px;
+    overflow: visible;
+    transform: scaleX(0.142) scaleY(0.142) scaleZ(0.1);
+  }
+}
+@media (max-width: 1600px) {
+  .wrapper-screen {
+    padding: 10px;
+    overflow: visible;
+    transform: scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+  }
+}
+
+.loader {
+  display: flex;
+  color: white;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
 }
 
 #three-canvas {
