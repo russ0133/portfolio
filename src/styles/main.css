@@ -8,6 +8,28 @@
   overflow: hidden;
   z-index: 15;
 
+  .navbar-upper {
+    display: flex;
+    gap: 1em;
+    padding-top: 5px;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 15;
+
+    .contact {
+      border-radius: 6px;
+      padding: 2px 6px 2px 6px;
+      font-size: 0.95em;
+    }
+  }
+  .resume {
+    border-radius: 6px;
+    padding: 2px 6px 2px 6px;
+    font-size: 1.2em;
+  }
   .title {
     position: relative;
     justify-content: space-between;
@@ -51,6 +73,23 @@
   justify-content: center;
   align-items: center;
   width: 41px;
+}
+
+.content-screen {
+  width: 334px;
+  height: 216px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.wrapper-screen {
+  padding: 10px;
+  width: 668px;
+  height: 432px;
+  transform: scale(0.5);
+  transform-origin: top left;
 }
 
 .loader {

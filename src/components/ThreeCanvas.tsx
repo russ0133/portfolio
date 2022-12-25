@@ -1,21 +1,12 @@
-import {
-  AccumulativeShadows,
-  Backdrop,
-  ContactShadows,
-  OrbitControls,
-  PerspectiveCamera,
-  PresentationControls,
-  RandomizedLight,
-  Stage,
-} from "@react-three/drei";
+import { PresentationControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
 import Console from "./Console";
 import { useZuStore } from "../zustand/zuStore";
-import Loading from "./Loading";
+import Loading from "./interface/Loading";
 
 function ThreeCanvas() {
-  const power = useZuStore((store) => store.state.isPowerOn);
+  const power = useZuStore((store) => store.state.console.isPowerOn);
   const rotation = {
     x: power ? 0 : 0,
     y: power ? 0 : 0,
@@ -53,11 +44,6 @@ function ThreeCanvas() {
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
           >
             {" "}
-            {/* 
-            <mesh>
-              <boxBufferGeometry args={[1, 1, 1]} />
-              <meshStandardMaterial color="#0391BA" />
-            </mesh> */}
             <Console setHovering={setHovering} text={text} setText={setText} />
           </PresentationControls>
         </Stage>

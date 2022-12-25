@@ -1,18 +1,26 @@
 import create from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-interface State {
+interface IConsole {
   isFirstRun: boolean;
-  isPowerOn: boolean;
-  isUIOpen: boolean;
   isModelLoaded: boolean;
+  isPowerOn: boolean;
+  isViewingContent: boolean;
 }
+
+interface State {
+  isUIOpen: boolean;
+  console: IConsole;
+}
+
 interface Actions {
   togglePower: () => void;
-  toggleUI: (value: boolean) => void;
   setModelLoaded: () => void;
+  setUIOpen: (value: boolean) => void;
   setIsFirstRun: (value: boolean) => void;
+  setIsViewingContent: (value: boolean) => void;
 }
+
 interface IZuStore {
   state: State;
   actions: Actions;
@@ -20,26 +28,39 @@ interface IZuStore {
 
 export const useZuStore = create(
   immer<IZuStore>((set) => ({
-    state: { isPowerOn: false, isModelLoaded: false, isUIOpen: false, isFirstRun: true },
+    state: {
+      console: {
+        isPowerOn: false,
+        isModelLoaded: false,
+        isFirstRun: true,
+        isViewingContent: false,
+      },
+      isUIOpen: false,
+    },
     actions: {
-      toggleUI: (value) => {
+      setUIOpen: (value) => {
         set((store) => {
           store.state.isUIOpen = value;
         });
       },
       togglePower: () => {
         set((store) => {
-          store.state.isPowerOn = !store.state.isPowerOn;
+          store.state.console.isPowerOn = !store.state.console.isPowerOn;
         });
       },
       setModelLoaded: () => {
         set((store) => {
-          store.state.isModelLoaded = true;
+          store.state.console.isModelLoaded = true;
         });
       },
       setIsFirstRun: (value) => {
         set((store) => {
-          store.state.isFirstRun = value;
+          store.state.console.isFirstRun = value;
+        });
+      },
+      setIsViewingContent: (value) => {
+        set((store) => {
+          store.state.console.isViewingContent = value;
         });
       },
     },

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useZuStore } from "../zustand/zuStore";
+import { useZuStore } from "../../zustand/zuStore";
 import Spinner from "./svg/Spinner";
 
 function Loading() {
-  const modelLoaded = useZuStore((store) => store.state.isModelLoaded);
+  const modelLoaded = useZuStore((store) => store.state.console.isModelLoaded);
 
   const [loaded, setLoaded] = React.useState(false);
 
