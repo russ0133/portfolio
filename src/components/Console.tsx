@@ -12,6 +12,7 @@ import { useZuStore } from "../zustand/zuStore";
 import { getRandomHexColor } from "../utils/color";
 import Screen from "./console/Screen";
 import ContentScreen from "./console/ContentScreen";
+import { options } from "../App";
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -41,8 +42,15 @@ interface IConsole {
 const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
 
-  const { isModelLoaded, isPowerOn, isViewingContent } = useZuStore((store) => store.state.console);
-  const { setModelLoaded } = useZuStore((store) => store.actions);
+  const { isModelLoaded, isPowerOn, isViewingContent, selectedOption } = useZuStore(
+    (store) => store.state.console
+  );
+  const { setModelLoaded, setSelectedOption } = useZuStore((store) => store.actions);
+
+  const handleControls = () => {
+    if (selectedOption == options.length - 1) return setSelectedOption(0);
+    else return setSelectedOption(selectedOption + 1);
+  };
 
   const [ledColor, setLedColor] = React.useState("#0391BA");
   const { active, progress, errors, item } = useProgress();
@@ -119,9 +127,7 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
             material={materials.Border}
             onPointerEnter={() => handleHovering(true)}
             onPointerLeave={() => handleHovering(false)}
-            onClick={() => {
-              text === "About me" ? setText("Projects") : setText("About me");
-            }}
+            onClick={handleControls}
           />
           <mesh geometry={nodes.ButtonRight.geometry} material={materials.Border} />
           <mesh

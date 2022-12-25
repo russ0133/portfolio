@@ -6,6 +6,7 @@ interface IConsole {
   isModelLoaded: boolean;
   isPowerOn: boolean;
   isViewingContent: boolean;
+  selectedOption: number;
 }
 
 interface State {
@@ -19,6 +20,7 @@ interface Actions {
   setUIOpen: (value: boolean) => void;
   setIsFirstRun: (value: boolean) => void;
   setIsViewingContent: (value: boolean) => void;
+  setSelectedOption: (number: number) => void;
 }
 
 interface IZuStore {
@@ -34,6 +36,7 @@ export const useZuStore = create(
         isModelLoaded: false,
         isFirstRun: true,
         isViewingContent: false,
+        selectedOption: 0,
       },
       isUIOpen: false,
     },
@@ -62,6 +65,11 @@ export const useZuStore = create(
       setIsViewingContent: (value) => {
         set((store) => {
           store.state.console.isViewingContent = value;
+        });
+      },
+      setSelectedOption: (value) => {
+        set((store) => {
+          store.state.console.selectedOption = value;
         });
       },
     },

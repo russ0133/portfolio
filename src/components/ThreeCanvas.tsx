@@ -28,7 +28,7 @@ function ThreeCanvas() {
   }, []);
 
   return (
-    <div id="three-canvas" onClick={() => setAdjust(false)}>
+    <div id="three-canvas" className="border-red-400" onClick={() => setAdjust(false)}>
       <Loading />
       <Canvas
         shadows

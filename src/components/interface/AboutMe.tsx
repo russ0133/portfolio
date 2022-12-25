@@ -327,6 +327,8 @@ export default function Example() {
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
                       <div>
+                        <div>Click here</div>
+
                         <img
                           className="h-8 w-auto"
                           src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"

@@ -27,7 +27,7 @@ const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
       position={[0.05, -0.22, 0]}
     >
       {isViewingContent ? (
-        <Html position={[-0.004, 1.18, 0.16]} scale={[1, 1, 1]} transform occlude>
+        <Html position={[-0.005, 1.18, 1]} scale={[1.5, 1.5, 1]} transform occlude>
           <motion.div
             initial="off"
             animate={isViewingContent ? "on" : "off"}
@@ -35,7 +35,6 @@ const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
               off: {},
               on: {
                 opacity: 1,
-                fontSize: 2,
               },
             }}
             className="wrapper-screen"
