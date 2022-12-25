@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @font-face {
   font-family: "gameover";
   src: url("/fonts/gameboy.ttf");
 }
 
-.test {
+@font-face {
+  font-family: "opensans";
+  src: url("/fonts/opensans.ttf");
 }

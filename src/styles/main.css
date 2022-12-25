@@ -15,7 +15,6 @@ body {
     display: flex;
     gap: 1em;
     padding-top: 5px;
-    justify-content: start;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -115,6 +114,8 @@ body {
 @media (max-width: 1600px) {
   .wrapper-screen {
     padding: 10px;
+
+    border-radius: 32px 6px 32px 6px;
     overflow: visible;
     transform: scaleX(0.1) scaleY(0.1) scaleZ(0.1);
   }

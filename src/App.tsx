@@ -5,34 +5,19 @@ import Navbar from "./components/Navbar";
 import { Link, animateScroll as scroll } from "react-scroll";
 import ThreeCanvas from "./components/ThreeCanvas";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 
-export const options = [{ label: "About me" }, { label: "Projects" }, { label: "Contact" }];
+export const options = [
+  { label: "About me", content: <About /> },
+  { label: "Projects", content: <Projects /> },
+  { label: "Contact", content: <Contact /> },
+];
 
 function App() {
-  const [loaded, setLoaded] = React.useState(false);
-  const myRef = useRef<any>();
-  useEffect(() => {
-    setTimeout(() => setLoaded(true), 1000);
-  }, []);
   return (
-    <div id="app">
-      {/*       <div
-        className="hero h-screen flex  shadow-md"
-        onClick={() => {
-          console.log("Scroll");
-        }}
-      >
-        <Link
-          activeClass="active"
-          to="three-canvas"
-          spy={true}
-          smooth={true}
-          offset={0}
-          duration={500}
-        >
-          <button className="bg-red-500">Hey!</button>
-        </Link>
-      </div> */}
+    <div id="app" className="font-opensans">
       <Navbar />
       <ThreeCanvas />
     </div>

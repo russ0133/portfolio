@@ -13,6 +13,7 @@ import { getRandomHexColor } from "../utils/color";
 import Screen from "./console/Screen";
 import ContentScreen from "./console/ContentScreen";
 import { options } from "../App";
+import { AnimatePresence } from "framer-motion";
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -42,9 +43,13 @@ interface IConsole {
 const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
 
-  const { isModelLoaded, isPowerOn, isViewingContent, selectedOption } = useZuStore(
-    (store) => store.state.console
-  );
+  const {
+    isModelLoaded,
+    isPowerOn,
+    isViewingContent,
+    selectedOption,
+    shouldReturnToPosition: shouldMoveConsole,
+  } = useZuStore((store) => store.state.console);
   const { setModelLoaded, setSelectedOption } = useZuStore((store) => store.actions);
 
   const handleControls = () => {
@@ -97,17 +102,35 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
     setHovering(value);
   };
 
+  const fn = () => {
+    if (shouldMoveConsole) return "on";
+    if (isPowerOn) return "on";
+    else return "";
+  };
+
+  const init = () => {
+    if (shouldMoveConsole) return "return";
+    else return "on";
+  };
   return (
     <>
       {!isViewingContent ? (
         <motion.group
-          initial="on"
+          initial={init()}
           transition={spring}
-          animate={isPowerOn ? "on" : ""}
+          animate={fn()}
           variants={{
             on: {
               x: 0,
               y: -0.1,
+              z: 0,
+              rotateX: 0,
+              rotateY: 0,
+              rotateZ: 0,
+            },
+            return: {
+              x: 0,
+              y: -2,
               z: 0,
               rotateX: 0,
               rotateY: 0,

@@ -4,7 +4,9 @@ import { useZuStore } from "../../zustand/zuStore";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
 import Example from "../interface/AboutMe";
-import About from "../About";
+import About from "../../pages/About";
+import { AnimatePresence } from "framer-motion";
+import { options } from "../../App";
 
 interface IScreen {
   nodes: GLTFResult["nodes"];
@@ -12,18 +14,16 @@ interface IScreen {
 }
 
 const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
-  const { isViewingContent } = useZuStore((store) => store.state.console);
+  const { isViewingContent, selectedOption } = useZuStore((store) => store.state.console);
   const { setIsViewingContent } = useZuStore((store) => store.actions);
 
   return (
     <motion.mesh
-      /*       initial="on"
-      animate={isViewingContent ? "on" : "off"}
-      variants={{ off: { scale: [0, 1.1, 0] }, on: { scale: [1, 1.1, 1] } }} */
+      key="hello"
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
       geometry={nodes.Cube004_1.geometry}
-      material={materials.Border}
       position={[0.05, -0.22, 0]}
     >
       {isViewingContent ? (
@@ -37,13 +37,13 @@ const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
                 opacity: 1,
               },
             }}
-            className="wrapper-screen"
+            className="wrapper-screen bg-gradient-to-br  from-purple-500 to-red-700"
             transition={{}}
             onPointerDown={(e) => {
               e.stopPropagation();
             }}
           >
-            <About />
+            {options[selectedOption].content}
           </motion.div>
         </Html>
       ) : null}
