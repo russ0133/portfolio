@@ -4,6 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import Console from "./Console";
 import { useZuStore } from "../zustand/zuStore";
 import Loading from "./interface/Loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AiFillGithub } from "react-icons/ai";
+import { BsCodeSlash, BsCodeSquare, BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { Tooltip } from "antd";
 
 function ThreeCanvas() {
   const power = useZuStore((store) => store.state.console.isPowerOn);
@@ -32,6 +36,25 @@ function ThreeCanvas() {
   return (
     <div id="three-canvas" className="border-red-400" onClick={() => setAdjust(false)}>
       <Loading />
+      <div className="social text-white my-1 mx-6 z-50 font-gameover text-xs flex gap-4 items-center">
+        <a href="https://www.linkedin.com/in/russ0133/" target="_blank">
+          <BsLinkedin className="w-8 h-8 bg-gradient-to-br from-slate-800/50 to-slate-900/20 rounded-md p-1 cursor-pointer transition hover:scale-110" />
+        </a>
+        <a href="https://twitter.com/gabrieldsfs" target="_blank">
+          <BsTwitter className="w-8 h-8 bg-gradient-to-br from-slate-800/50 to-slate-900/20 rounded-md p-1 cursor-pointer transition hover:scale-110" />
+        </a>
+        <a href="https://github.com/russ0133" target="_blank">
+          <BsGithub className="w-8 h-8 bg-gradient-to-br from-slate-800/50 to-slate-900/20 rounded-md p-1 cursor-pointer transition hover:scale-110" />
+        </a>
+        <Tooltip title="Source code">
+          <BsCodeSlash className="w-8 h-8 bg-gradient-to-br from-slate-800/50 to-slate-900/20 rounded-md p-1 cursor-pointer transition hover:scale-110" />
+        </Tooltip>
+      </div>
+
+      <div className="footer text-white my-1 mx-2 z-50 font-gameover text-xs noselect">
+        gabrieldsfs@gmail.com
+      </div>
+
       <Canvas
         shadows
         orthographic

@@ -12,6 +12,7 @@ interface IScreen {
 
 const Screen: React.FC<IScreen> = ({ nodes, materials }) => {
   const { isFirstRun, isPowerOn, selectedOption } = useZuStore((store) => store.state.console);
+
   const { setIsFirstRun, setUIOpen, setIsViewingContent } = useZuStore((store) => store.actions);
   return (
     <motion.mesh
@@ -61,7 +62,6 @@ const Screen: React.FC<IScreen> = ({ nodes, materials }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="black"
-                className="hover:bg-gradient-to-br hover:from-red-300 hover:to-purple-500 "
               >
                 <path
                   strokeLinecap="round"
@@ -98,7 +98,7 @@ const Screen: React.FC<IScreen> = ({ nodes, materials }) => {
                 />
               </svg>
             </div>
-            <p className="mb-2">{options[selectedOption].label}</p>
+            <p className="mb-2 noselect">{options[selectedOption].label}</p>
           </motion.div>
         </Html>
       ) : null}

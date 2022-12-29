@@ -103,6 +103,26 @@ body {
   height: 50px;
   overflow: visible;
 }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.social {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 @media (max-width: 1920px) {
   .wrapper-screen {
@@ -111,6 +131,7 @@ body {
     transform: scaleX(0.142) scaleY(0.142) scaleZ(0.142);
   }
 }
+
 @media (max-width: 1600px) {
   .wrapper-screen {
     padding: 10px;

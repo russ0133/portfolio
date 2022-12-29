@@ -42,7 +42,7 @@ const Information = () => {
       >
         <div className={`title ${isUIOpen && "flex"}`}>
           {isUIOpen && (
-            <div className=" text-slate-100 font-bold text-2xl bg-gradient-to-br  from-purple-500 to-purple-700 shadow-md w-max px-2 rounded-md">
+            <div className=" text-slate-100 noselect font-bold text-2xl bg-gradient-to-br  from-purple-500 to-purple-700 shadow-md w-max px-2 rounded-md">
               Welcome!
             </div>
           )}
@@ -64,7 +64,7 @@ const Information = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 * idx }}
-              className={`${"paragraph "} ${paragraph.classes} `}
+              className={`${"paragraph noselect "} ${paragraph.classes} `}
             >
               {paragraph.text}
             </motion.p>

@@ -50,7 +50,8 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
     selectedOption,
     shouldReturnToPosition: shouldMoveConsole,
   } = useZuStore((store) => store.state.console);
-  const { setModelLoaded, setSelectedOption } = useZuStore((store) => store.actions);
+  const { setModelLoaded, setSelectedOption, setIsViewingContent, setUIOpen, setIsFirstRun } =
+    useZuStore((store) => store.actions);
 
   const handleControls = () => {
     if (selectedOption == options.length - 1) return setSelectedOption(0);
@@ -67,7 +68,7 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
 
   useEffect(() => {
     if (isModelLoaded) {
-      materials.LED.color = new THREE.Color(ledColor);
+      materials.Superstructure.color = new THREE.Color(ledColor);
     }
   }, [ledColor]);
 
@@ -130,7 +131,7 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
             },
             return: {
               x: 0,
-              y: -2,
+              y: -1,
               z: 0,
               rotateX: 0,
               rotateY: 0,
@@ -152,7 +153,18 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
             onPointerLeave={() => handleHovering(false)}
             onClick={handleControls}
           />
-          <mesh geometry={nodes.ButtonRight.geometry} material={materials.Border} />
+          <mesh
+            geometry={nodes.ButtonRight.geometry}
+            material={materials.Border}
+            onPointerEnter={() => handleHovering(true)}
+            onPointerLeave={() => handleHovering(false)}
+            onClick={(e) => {
+              setIsViewingContent(true);
+              setUIOpen(false);
+              setIsFirstRun(false);
+              e.stopPropagation();
+            }}
+          />
           <mesh
             geometry={nodes.LED_Button.geometry}
             material={isPowerOn ? materials.LED : materials.Border}
@@ -160,7 +172,15 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
               setLedColor(getRandomHexColor());
             }}
           />
-          <mesh geometry={nodes.ControlsBottom.geometry} material={materials.Border} />
+          <mesh
+            geometry={nodes.ControlsBottom.geometry}
+            material={materials.Border}
+            onPointerEnter={() => handleHovering(true)}
+            onPointerLeave={() => handleHovering(false)}
+            onClick={() => {
+              setLedColor(getRandomHexColor());
+            }}
+          />
           <Screen nodes={nodes} materials={materials} />
         </motion.group>
       ) : (
@@ -173,4 +193,4 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
 useGLTF.preload("/console.gltf");
 
 export default Console;
-const spring = { type: "spring", stiffness: 700, damping: 25 };
+const spring = { type: "spring", stiffness: 400, damping: 25 };
