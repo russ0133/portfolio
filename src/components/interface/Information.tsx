@@ -38,7 +38,9 @@ const Information = () => {
             width: 58,
           },
         }}
-        className={`mt-4 ml-4 ${isUIOpen && "bg-purple-500/50 backdrop-blur-sm"} p-2 rounded-md `}
+        className={`information mt-4 ml-4 ${
+          isUIOpen && "bg-purple-500/50 backdrop-blur-sm"
+        } p-2 rounded-md `}
       >
         <div className={`title ${isUIOpen && "flex"}`}>
           {isUIOpen && (

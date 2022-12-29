@@ -10,7 +10,6 @@ function PowerSwitch() {
   const handleClick = () => {
     if (power === true) {
       setIsFirstRun(true);
-      setUIOpen(true);
     }
     togglePower();
   };
