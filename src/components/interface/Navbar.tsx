@@ -1,10 +1,10 @@
 import React from "react";
-import PowerSwitch from "./interface/PowerSwitch";
+import PowerSwitch from "../console/PowerSwitch";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import Spinner from "./interface/svg/Spinner";
-import { useZuStore } from "../zustand/zuStore";
-import Information from "./interface/Information";
+import Spinner from "./svg/Spinner";
+import { useZuStore } from "../../zustand/zuStore";
+import Information from "./Information";
 
 function Navbar() {
   const [loaded, setLoaded] = React.useState(false);

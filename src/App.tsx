@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame, Canvas } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/interface/Navbar";
 import { Link, animateScroll as scroll } from "react-scroll";
 import ThreeCanvas from "./components/ThreeCanvas";
 import { Scrollbars } from "react-custom-scrollbars-2";

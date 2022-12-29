@@ -3,9 +3,6 @@ import { motion } from "framer-motion-3d";
 import { useZuStore } from "../../zustand/zuStore";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
-import Example from "../interface/AboutMe";
-import About from "../../pages/About";
-import { AnimatePresence } from "framer-motion";
 import { options } from "../../App";
 
 interface IScreen {
