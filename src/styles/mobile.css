@@ -3,6 +3,7 @@
     padding: 10px;
     overflow: visible;
     transform: scaleX(0.142) scaleY(0.142) scaleZ(0.142);
+    -webkit-transform: scaleX(0.142) scaleY(0.142) scaleZ(0.142);
   }
 
   .social {
@@ -24,6 +25,7 @@
     border-radius: 32px 6px 32px 6px;
     overflow: visible;
     transform: scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    -webkit-transform: scaleX(0.1) scaleY(0.1) scaleZ(0.1);
   }
 }
 

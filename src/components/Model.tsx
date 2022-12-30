@@ -152,7 +152,7 @@ const Model: React.FC<IModel> = memo(({ setHovering }) => {
             material={materials.Border}
             onPointerEnter={() => handleHovering(true)}
             onPointerLeave={() => handleHovering(false)}
-            onClick={handleControls}
+            onClick={isPowerOn ? handleControls : undefined}
           />
           <mesh
             geometry={nodes.ButtonRight.geometry}
@@ -160,10 +160,12 @@ const Model: React.FC<IModel> = memo(({ setHovering }) => {
             onPointerEnter={() => handleHovering(true)}
             onPointerLeave={() => handleHovering(false)}
             onClick={(e) => {
-              setIsViewingContent(true);
-              setUIOpen(false);
-              setIsFirstRun(false);
-              e.stopPropagation();
+              if (isPowerOn) {
+                setIsViewingContent(true);
+                setUIOpen(false);
+                setIsFirstRun(false);
+                e.stopPropagation();
+              }
             }}
           />
           <mesh
