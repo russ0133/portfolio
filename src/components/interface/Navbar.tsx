@@ -7,22 +7,18 @@ import { useZuStore } from "../../zustand/zuStore";
 import Information from "./Information";
 
 function Navbar() {
-  const [loaded, setLoaded] = React.useState(false);
-
-  const open = useZuStore((store) => store.state.isUIOpen);
   const setOpen = useZuStore((store) => store.actions.setUIOpen);
   const modelLoaded = useZuStore((store) => store.state.console.isModelLoaded);
 
   useEffect(() => {
     if (modelLoaded)
       setTimeout(() => {
-        setLoaded(true);
         setOpen(true);
       }, 500);
   }, [modelLoaded]);
 
   return (
-    <div id="navbar" onClick={() => console.log("eee")}>
+    <div id="navbar">
       <section className="navbar-upper">
         <PowerSwitch />
         <a

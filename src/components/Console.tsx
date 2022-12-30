@@ -12,7 +12,7 @@ import { useZuStore } from "../zustand/zuStore";
 import { getRandomHexColor } from "../utils/color";
 import Screen from "./console/Screen";
 import ContentScreen from "./console/ContentScreen";
-import { options } from "../App";
+import { ConsoleScreenMenu } from "../App";
 import { AnimatePresence } from "framer-motion";
 
 export type GLTFResult = GLTF & {
@@ -36,11 +36,9 @@ export type GLTFResult = GLTF & {
 
 interface IConsole {
   setHovering: (value: boolean) => void;
-  text: string;
-  setText: (value: string) => void;
 }
 
-const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
+const Console: React.FC<IConsole> = memo(({ setHovering }) => {
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
 
   const {
@@ -50,11 +48,12 @@ const Console: React.FC<IConsole> = memo(({ setHovering, text, setText }) => {
     selectedOption,
     shouldReturnToPosition: shouldMoveConsole,
   } = useZuStore((store) => store.state.console);
+
   const { setModelLoaded, setSelectedOption, setIsViewingContent, setUIOpen, setIsFirstRun } =
     useZuStore((store) => store.actions);
 
   const handleControls = () => {
-    if (selectedOption == options.length - 1) return setSelectedOption(0);
+    if (selectedOption == ConsoleScreenMenu.length - 1) return setSelectedOption(0);
     else return setSelectedOption(selectedOption + 1);
   };
 

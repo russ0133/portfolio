@@ -3,7 +3,7 @@ import { motion } from "framer-motion-3d";
 import { useZuStore } from "../../zustand/zuStore";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
-import { options } from "../../App";
+import { ConsoleScreenMenu } from "../../App";
 
 interface IScreen {
   nodes: GLTFResult["nodes"];
@@ -40,7 +40,7 @@ const ContentScreen: React.FC<IScreen> = ({ nodes, materials }) => {
               e.stopPropagation();
             }}
           >
-            {options[selectedOption].content}
+            {ConsoleScreenMenu[selectedOption].content}
           </motion.div>
         </Html>
       ) : null}

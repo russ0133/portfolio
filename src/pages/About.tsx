@@ -1,7 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (

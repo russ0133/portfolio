@@ -3,7 +3,7 @@ import { motion } from "framer-motion-3d";
 import { useZuStore } from "../../zustand/zuStore";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
-import { options } from "../../App";
+import { ConsoleScreenMenu } from "../../App";
 
 interface IScreen {
   nodes: GLTFResult["nodes"];
@@ -98,7 +98,7 @@ const Screen: React.FC<IScreen> = ({ nodes, materials }) => {
                 />
               </svg>
             </div>
-            <p className="mb-2 noselect">{options[selectedOption].label}</p>
+            <p className="mb-2 noselect">{ConsoleScreenMenu[selectedOption].label}</p>
           </motion.div>
         </Html>
       ) : null}

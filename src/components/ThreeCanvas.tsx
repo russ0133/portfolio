@@ -1,13 +1,9 @@
 import { PresentationControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Console from "./Console";
 import { useZuStore } from "../zustand/zuStore";
 import Loading from "./interface/Loading";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AiFillGithub } from "react-icons/ai";
-import { BsCodeSlash, BsCodeSquare, BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
-import { Tooltip } from "antd";
 import Social from "./interface/Social";
 
 function ThreeCanvas() {
@@ -17,15 +13,14 @@ function ThreeCanvas() {
     y: power ? 0 : 0,
     z: power ? 0 : 0,
   };
-  const [text, setText] = React.useState("About me");
   const [hovering, setHovering] = React.useState(false);
 
-  const refff = useRef<any>();
   const { setIsViewingContent, setShouldReturnToPosition: setShouldMoveConsole } = useZuStore(
     (store) => store.actions
   );
 
   const [adjust, setAdjust] = useState<any>(1.12);
+
   useEffect(() => {
     document.body.style.cursor = hovering ? "pointer" : "default";
   }, [hovering]);
@@ -62,7 +57,7 @@ function ThreeCanvas() {
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
           >
             {" "}
-            <Console setHovering={setHovering} text={text} setText={setText} />
+            <Console setHovering={setHovering} />
           </PresentationControls>
         </Stage>
       </Canvas>

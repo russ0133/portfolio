@@ -1,29 +1,25 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useZuStore } from "../../zustand/zuStore";
-import Spinner from "./svg/Spinner";
 import CloseIcon from "./svg/CloseIcon";
 import InfoIcon from "./svg/InfoIcon";
+import { InformationParagraphs } from "../../App";
 
 const Information = () => {
   const [loaded, setLoaded] = React.useState(false);
 
   const isUIOpen = useZuStore((store) => store.state.isUIOpen);
   const setUIOpen = useZuStore((store) => store.actions.setUIOpen);
-  const modelLoaded = useZuStore((store) => store.state.console.isModelLoaded);
+  const isModelLoaded = useZuStore((store) => store.state.console.isModelLoaded);
 
   useEffect(() => {
-    if (modelLoaded)
+    if (isModelLoaded)
       setTimeout(() => {
         setLoaded(true);
         setUIOpen(true);
       }, 500);
-  }, [modelLoaded]);
+  }, [isModelLoaded]);
 
-  const paragraphs = [
-    { text: "This is my portifolio.", classes: "text-white" },
-    { text: "Navigate through the options clicking on buttons.", classes: "text-white" },
-  ];
   return (
     <div>
       <motion.div
@@ -38,9 +34,9 @@ const Information = () => {
             width: 58,
           },
         }}
-        className={`information mt-4 ml-4 ${
+        className={`information mt-4 ml-4 p-2 rounded-md ${
           isUIOpen && "bg-purple-500/50 backdrop-blur-sm"
-        } p-2 rounded-md `}
+        } `}
       >
         <div className={`title ${isUIOpen && "flex"}`}>
           {isUIOpen && (
@@ -60,7 +56,7 @@ const Information = () => {
           </div>
         </div>
         {isUIOpen &&
-          paragraphs.map((paragraph, idx) => (
+          InformationParagraphs.map((paragraph, idx) => (
             <motion.p
               key={idx}
               initial={{ opacity: 0 }}
