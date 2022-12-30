@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useZuStore } from "../../zustand/zuStore";
+import { useZuStore } from "../../zustand/store";
 import Spinner from "./svg/Spinner";
 
 function Loading() {

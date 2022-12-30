@@ -3,7 +3,7 @@ import PowerSwitch from "../console/PowerSwitch";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import Spinner from "./svg/Spinner";
-import { useZuStore } from "../../zustand/zuStore";
+import { useZuStore } from "../../zustand/store";
 import Information from "./Information";
 
 function Navbar() {

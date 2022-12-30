@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "./components/interface/Navbar";
-import ThreeCanvas from "./components/ThreeCanvas";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
+
+import { Navbar } from "@components/interface";
+import { ThreeCanvas } from "@components";
+import { About, Projects, Contact } from "@pages";
 
 export const ConsoleScreenMenu = [
   { label: "About me", content: <About /> },

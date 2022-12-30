@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useZuStore } from "../../zustand/zuStore";
-import CloseIcon from "./svg/CloseIcon";
-import InfoIcon from "./svg/InfoIcon";
-import { InformationParagraphs } from "../../App";
+
+import { useZuStore } from "@zustand/store";
+import { InfoIcon, CloseIcon } from "@components/interface/svg";
+import { InformationParagraphs } from "@App";
 
 const Information = () => {
   const [loaded, setLoaded] = React.useState(false);

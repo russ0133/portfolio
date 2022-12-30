@@ -1,7 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
@@ -13,7 +11,7 @@ export default function Contact() {
         transition={spring}
         className="relative bg-gradient-to-br  from-purple-600 to-red-800 shadow-md rounded-full text-white"
       >
-        <h1 className="text-2xl font-opensans font-bold m-2 mx-6">My projects</h1>
+        <h1 className="text-2xl font-opensans font-bold m-2 mx-6">Contact</h1>
       </motion.div>
 
       <motion.div

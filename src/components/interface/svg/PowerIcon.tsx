@@ -1,5 +1,5 @@
 import React from "react";
-import { useZuStore } from "../../../zustand/zuStore";
+import { useZuStore } from "../../../zustand/store";
 
 export default function PowerIcon() {
   const power = useZuStore((store) => store.state.console.isPowerOn);

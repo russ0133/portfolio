@@ -1,10 +1,11 @@
+import React, { useEffect, useState } from "react";
+
 import { PresentationControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useState } from "react";
-import Console from "./Console";
-import { useZuStore } from "../zustand/zuStore";
-import Loading from "./interface/Loading";
-import Social from "./interface/Social";
+
+import { Console } from "@components";
+import { Loading, Social } from "@components/interface";
+import { useZuStore } from "@zustand/store";
 
 function ThreeCanvas() {
   const power = useZuStore((store) => store.state.console.isPowerOn);

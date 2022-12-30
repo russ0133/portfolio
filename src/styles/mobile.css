@@ -1,0 +1,47 @@
+@media (max-width: 1920px) {
+  .wrapper-screen {
+    padding: 10px;
+    overflow: visible;
+    transform: scaleX(0.142) scaleY(0.142) scaleZ(0.142);
+  }
+
+  .social {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .paragraph {
+    margin-left: 1em;
+    width: max-content;
+    white-space: wrap;
+  }
+}
+
+@media (max-width: 1600px) {
+  .wrapper-screen {
+    padding: 10px;
+
+    border-radius: 32px 6px 32px 6px;
+    overflow: visible;
+    transform: scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    visibility: hidden;
+  }
+  .information {
+    max-width: 85vw;
+  }
+  .social {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0em;
+    top: auto;
+  }
+  .paragraph {
+    white-space: normal;
+    width: 95%;
+  }
+}

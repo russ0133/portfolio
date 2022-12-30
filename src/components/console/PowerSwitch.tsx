@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
-import { useZuStore } from "../../zustand/zuStore";
+import { useZuStore } from "../../zustand/store";
 import PowerIcon from "../interface/svg/PowerIcon";
 
 function PowerSwitch() {

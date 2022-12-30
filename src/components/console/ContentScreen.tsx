@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion-3d";
-import { useZuStore } from "../../zustand/zuStore";
+import { useZuStore } from "../../zustand/store";
 import { GLTFResult } from "../Console";
 import { Html } from "@react-three/drei";
 import { ConsoleScreenMenu } from "../../App";
