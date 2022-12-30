@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <motion.div className="mx-12 max-w-xs">
+    <motion.div className=" bg-black h-[80vh] w-[60vw]">
       <motion.div
         layout
         initial={{ scaleX: 0, opacity: 0 }}
