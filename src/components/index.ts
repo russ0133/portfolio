@@ -1,4 +1,4 @@
-import Console from "./Console";
+import Model from "./Model";
 import ThreeCanvas from "./ThreeCanvas";
 
-export { Console, ThreeCanvas };
+export { Model, ThreeCanvas };

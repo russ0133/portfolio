@@ -1,7 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
-import { useZuStore } from "../../zustand/store";
-import PowerIcon from "../interface/svg/PowerIcon";
+import React from "react";
+import { motion } from "framer-motion";
+
+import { useZuStore } from "@zustand/store";
+import { PowerIcon } from "@components/interface/svg";
 
 function PowerSwitch() {
   const power = useZuStore((store) => store.state.console.isPowerOn);

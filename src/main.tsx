@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
+
+import App from "@App";
+
 import "./index.css";
-import "./styles/main.css";
-import "./styles/mobile.css";
+import "@styles/main.css";
+import "@styles/mobile.css";
 
 const router = createBrowserRouter([
   {

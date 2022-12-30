@@ -11,11 +11,11 @@ import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion-3d";
 
-import { useZuStore } from "../zustand/store";
-import { getRandomHexColor } from "../utils/color";
+import { useZuStore } from "@zustand/store";
+import { getRandomHexColor } from "@utils/color";
 
-import { ContentScreen, Screen } from "./console";
-import { ConsoleScreenMenu } from "../App";
+import { ContentScreen, Screen } from "@components/console";
+import { ConsoleScreenMenu } from "@App";
 
 export type GLTFResult = GLTF & {
   nodes: {
@@ -36,11 +36,11 @@ export type GLTFResult = GLTF & {
   };
 };
 
-interface IConsole {
+interface IModel {
   setHovering: (value: boolean) => void;
 }
 
-const Console: React.FC<IConsole> = memo(({ setHovering }) => {
+const Model: React.FC<IModel> = memo(({ setHovering }) => {
   const { nodes, materials } = useGLTF("/console.gltf") as unknown as GLTFResult;
 
   const {
@@ -193,5 +193,5 @@ const Console: React.FC<IConsole> = memo(({ setHovering }) => {
 
 useGLTF.preload("/console.gltf");
 
-export default Console;
+export default Model;
 const spring = { type: "spring", stiffness: 400, damping: 25 };

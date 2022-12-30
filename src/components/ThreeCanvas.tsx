@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { PresentationControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-import { Console } from "@components";
+import { Model } from "@components";
 import { Loading, Social } from "@components/interface";
 import { useZuStore } from "@zustand/store";
 
@@ -58,7 +58,7 @@ function ThreeCanvas() {
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
           >
             {" "}
-            <Console setHovering={setHovering} />
+            <Model setHovering={setHovering} />
           </PresentationControls>
         </Stage>
       </Canvas>

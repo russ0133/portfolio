@@ -1,5 +1,6 @@
-import { Tooltip } from "antd";
 import React from "react";
+
+import { Tooltip } from "antd";
 import { BsLinkedin, BsTwitter, BsGithub, BsCodeSlash } from "react-icons/bs";
 
 export default function Social() {

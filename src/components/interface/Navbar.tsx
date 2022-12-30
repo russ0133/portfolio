@@ -1,10 +1,8 @@
-import React from "react";
-import PowerSwitch from "../console/PowerSwitch";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
-import Spinner from "./svg/Spinner";
-import { useZuStore } from "../../zustand/store";
-import Information from "./Information";
+import React, { useEffect } from "react";
+
+import { useZuStore } from "@zustand/store";
+import { Information } from "@components/interface";
+import { PowerSwitch } from "@components/console";
 
 function Navbar() {
   const setOpen = useZuStore((store) => store.actions.setUIOpen);
