@@ -1,6 +1,11 @@
 body {
   overflow-x: hidden;
 }
+
+* {
+  touch-action: none !important;
+}
+
 #navbar {
   display: flex;
   flex-direction: column;

@@ -38,7 +38,6 @@ function ThreeCanvas() {
       <Canvas
         shadows
         orthographic
-        camera={{ position: [0, 0, 100], zoom: 300 }}
         onPointerMissed={() => {
           setIsViewingContent(false);
           setShouldMoveConsole(true);
@@ -52,12 +51,11 @@ function ThreeCanvas() {
             cursor={false} // Whether to toggle cursor style on drag
             snap={true} // Snap-back to center (can also be a spring config)
             speed={1} // Speed factor
-            rotation={[rotation.x, rotation.y, rotation.z]} // Default rotation
             polar={[-0.2, 0.2]} // Vertical limits
-            azimuth={[-0.5, 0.5]} // Horizontal limits
+            azimuth={[-0.6, 0.6]} // Horizontal limits
             config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
+            rotation={[rotation.x, rotation.y, rotation.z]} // Default rotation
           >
-            {" "}
             <Model setHovering={setHovering} />
           </PresentationControls>
         </Stage>
