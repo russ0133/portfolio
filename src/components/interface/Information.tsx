@@ -61,7 +61,7 @@ const Information = () => {
               key={idx}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 * idx }}
+              transition={{ delay: 0.3 * idx }}
               className={`${"paragraph noselect "} ${paragraph.classes} `}
             >
               {paragraph.text}

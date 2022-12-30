@@ -12,7 +12,8 @@ export const ConsoleScreenMenu = [
 
 export const InformationParagraphs = [
   { text: "This is my portifolio.", classes: "text-white" },
-  { text: "Navigate through the options clicking on buttons.", classes: "text-white" },
+  { text: "Navigate through the options clicking on buttons", classes: "text-white" },
+  { text: "(on the gameboy model itself)", classes: "text-white mt-2 italic" },
 ];
 
 function App() {
