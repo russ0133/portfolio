@@ -12,6 +12,7 @@
     "@react-three/drei": "^9.47.1",
     "@react-three/fiber": "^8.9.1",
     "antd": "^5.1.0",
+    "detect-gpu": "^5.0.4",
     "framer-motion": "^8.0.2",
     "framer-motion-3d": "^8.0.1",
     "gltfjsx": "^6.1.1",

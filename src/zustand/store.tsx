@@ -1,5 +1,6 @@
 import create from "zustand";
 import { immer } from "zustand/middleware/immer";
+import * as THREE from "three";
 
 interface IConsole {
   isFirstRun: boolean;
@@ -13,6 +14,7 @@ interface IConsole {
 interface State {
   isUIOpen: boolean;
   console: IConsole;
+  glSettings: Partial<THREE.WebGLRendererParameters>;
 }
 
 interface Actions {
@@ -23,6 +25,7 @@ interface Actions {
   setIsViewingContent: (value: boolean) => void;
   setShouldReturnToPosition: (value: boolean) => void;
   setSelectedOption: (number: number) => void;
+  setGLSettings: (payload: Partial<THREE.WebGLRendererParameters>) => void;
 }
 
 interface IZuStore {
@@ -42,6 +45,7 @@ export const useZuStore = create(
         shouldReturnToPosition: false,
       },
       isUIOpen: false,
+      glSettings: { precision: "lowp", powerPreference: "low-power", preserveDrawingBuffer: false },
     },
     actions: {
       setUIOpen: (value) => {
@@ -78,6 +82,12 @@ export const useZuStore = create(
       setSelectedOption: (value) => {
         set((store) => {
           store.state.console.selectedOption = value;
+        });
+      },
+      setGLSettings: (payload) => {
+        set((store) => {
+          //@ts-ignore
+          store.state.glSettings = payload;
         });
       },
     },

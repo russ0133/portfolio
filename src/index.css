@@ -6,10 +6,13 @@
 
 @font-face {
   font-family: "gameover";
-  src: url("/fonts/gameboy.ttf");
+  src: url("/fonts/gameboy-webfont.woff2") format("woff2"),
+    url("/fonts/gameboy-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: "opensans";
-  src: url("/fonts/opensans.ttf");
+  src: url("/fonts/opensans.ttf") format("truetype");
 }

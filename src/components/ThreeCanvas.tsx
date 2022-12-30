@@ -7,8 +7,13 @@ import { Model } from "@components";
 import { Loading, Social } from "@components/interface";
 import { useZuStore } from "@zustand/store";
 
+import { getGPUTier } from "detect-gpu";
+
 function ThreeCanvas() {
   const power = useZuStore((store) => store.state.console.isPowerOn);
+  const glSettings = useZuStore((store) => store.state.glSettings);
+  const setGLSettings = useZuStore((store) => store.actions.setGLSettings);
+
   const rotation = {
     x: power ? 0 : 0,
     y: power ? 0 : 0,
@@ -30,6 +35,37 @@ function ThreeCanvas() {
     setTimeout(() => setAdjust(false), 500);
   }, []);
 
+  useEffect(() => {
+    async function setRendererPrecision() {
+      // You can await here
+      const response = await getGPUTier();
+
+      const currentGlSettings = { ...glSettings };
+      console.log("GPU-Tier: ", response.tier);
+      switch (response.tier) {
+        case 1:
+          currentGlSettings.precision = "lowp";
+          currentGlSettings.powerPreference = "low-power";
+          break;
+        case 2:
+          currentGlSettings.precision = "mediump";
+          currentGlSettings.powerPreference = "default";
+          break;
+        case 3:
+          currentGlSettings.precision = "highp";
+          currentGlSettings.powerPreference = "high-performance";
+          break;
+        default:
+          currentGlSettings.precision = "lowp";
+          currentGlSettings.powerPreference = "low-power";
+          break;
+      }
+      setGLSettings(currentGlSettings);
+    }
+    setRendererPrecision();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div id="three-canvas" className="border-red-400" onClick={() => setAdjust(false)}>
       <Loading />
@@ -42,6 +78,7 @@ function ThreeCanvas() {
           setIsViewingContent(false);
           setShouldMoveConsole(true);
         }}
+        gl={glSettings}
       >
         <Stage adjustCamera={adjust} intensity={0.5} shadows="contact" environment="sunset">
           <ambientLight />
