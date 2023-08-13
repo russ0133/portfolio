@@ -80,7 +80,12 @@ function ThreeCanvas() {
         }}
         gl={glSettings}
       >
-        <Stage adjustCamera={adjust} intensity={0.5} shadows="contact" environment="sunset">
+        <Stage
+          adjustCamera={adjust}
+          intensity={0.5}
+          shadows="contact"
+          environment={{ files: "/venice_sunset_1k.hdr" }}
+        >
           <ambientLight />
           <PresentationControls
             enabled={true} // the controls can be disabled by setting this to false
